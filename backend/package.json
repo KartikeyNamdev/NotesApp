@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:run": "node dist/prisma/seed.js",
-    "build": "npm install typescript && npx tsc -b && cd prisma && npx prisma generate && cd ..",
+    "build": "npx tsc -b && cd prisma && npx prisma generate && cd ..",
     "dev": "node dist/src/index.js",
     "start": "node dist/src/index.js"
   },
