@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ## Enums for Roles and Subscription Plans ##
+
+enum Role {
+  Admin
+  Member
+}
+
+enum SubscriptionPlan {
+  Free
+  Pro
+}
+
+
+// ## Models ##
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String   @unique // e.g., "Acme", "Globex"
+  slug      String   @unique // e.g., "acme", "globex" for API endpoints
+  plan      SubscriptionPlan @default(Free)
+  createdAt DateTime @default(now())
+
+  // Relations
+  users User[]
+  notes Note[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // You will store a hashed password here
+  role      Role     @default(Member)
+  createdAt DateTime @default(now())
+
+  // Relation to a Tenant (every user must belong to one)
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  // Relation to Notes (a user can author many notes)
+  notes     Note[]
+
+  @@index([tenantId])
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relation to the User who created the note
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  // Relation to the Tenant (every note must belong to one)
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([authorId])
+  @@index([tenantId]) // Crucial for performance on tenant-specific queries
+}

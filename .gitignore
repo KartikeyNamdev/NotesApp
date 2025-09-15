@@ -1,0 +1,45 @@
+# ## General ###
+
+# Dependencies
+node_modules/
+
+# Compiled output
+dist/
+build/
+.next/
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+
+# ### Frontend (Vite) ###
+
+# Vite-specific cache
+.vite/
+
+# Test coverage
+coverage/
+
+
+# ### Editor / IDE ###
+.vscode/
+.idea/
+
+
+# ### Prisma ###
+# The Prisma client is in node_modules, which is already ignored.
+# You might have local SQLite files for testing, which should be ignored.
+*.db
+*.db-journal

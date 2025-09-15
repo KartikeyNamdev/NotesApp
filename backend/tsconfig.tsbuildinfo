@@ -1,0 +1,1 @@
+{"root":["./prisma/seed.ts","./src/index.ts","./src/auth/middleware.ts","./src/auth/routes.ts","./src/notes/routes.ts","./src/tenants/routes.ts"],"errors":true,"version":"5.9.2"}
