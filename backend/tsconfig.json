@@ -2,14 +2,10 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "baseUrl": ".",
     "outDir": "dist",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
     "strict": true,
+    "esModuleInterop": true,
     "rootDir": "src"
   },
-  "include": ["src/**/*", "prisma/seed.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src"]
 }
