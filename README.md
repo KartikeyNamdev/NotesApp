@@ -45,22 +45,24 @@ In this model, all data for all tenants resides in the same database and tables.
 
 Every single database query in the API is filtered by the `tenantId` of the currently authenticated user. This ensures that a user from one tenant (e.g., Acme) can never access, modify, or even know about the existence of data belonging to another tenant (e.g., Globex).
 
+NOTE : TO ACCESS THE UPGRADE PLAN API, YOU HAVE TO DIRECTLY HIT THE API, IT IS NOT INCLUDED IN FRONTEND
+
 ---
 
 ## API Endpoints
 
-| Method   | Path                     | Auth       | Description                                                   |
-| :------- | :----------------------- | :--------- | :------------------------------------------------------------ |
-| `GET`    | `/health`                | Public     | Checks the health status of the API.                          |
-| `POST`   | `/auth/login`            | Public     | Authenticates a user and returns a JWT.                       |
-| `POST`   | `/auth/signup`           | Public     | Creates a new user within a specified tenant.                 |
-| `GET`    | `/auth/me`               | Protected  | Retrieves details of the currently logged-in user and tenant. |
-| `GET`    | `/notes`                 | Protected  | Lists all notes for the user's tenant.                        |
-| `POST`   | `/notes`                 | Protected  | Creates a new note (enforces subscription limits).            |
-| `GET`    | `/notes/:id`             | Protected  | Retrieves a single note by ID from the user's tenant.         |
-| `PUT`    | `/notes/:id`             | Protected  | Updates a note by ID.                                         |
-| `DELETE` | `/notes/:id`             | Protected  | Deletes a note by ID.                                         |
-| `POST`   | `/tenants/:slug/upgrade` | Admin Only | Upgrades the admin's tenant to the "Pro" plan.                |
+| Method   | Path                     | Auth       | Description                                                              |
+| :------- | :----------------------- | :--------- | :----------------------------------------------------------------------- |
+| `GET`    | `/health`                | Public     | Checks the health status of the API.                                     |
+| `POST`   | `/auth/login`            | Public     | Authenticates a user and returns a JWT.                                  |
+| `POST`   | `/auth/signup`           | Public     | Creates a new user within a specified tenant.                            |
+| `GET`    | `/auth/me`               | Protected  | Retrieves details of the currently logged-in user and tenant.            |
+| `GET`    | `/notes`                 | Protected  | Lists all notes for the user's tenant.                                   |
+| `POST`   | `/notes`                 | Protected  | Creates a new note (enforces subscription limits).                       |
+| `GET`    | `/notes/:id`             | Protected  | Retrieves a single note by ID from the user's tenant.                    |
+| `PUT`    | `/notes/:id`             | Protected  | Updates a note by ID.                                                    |
+| `DELETE` | `/notes/:id`             | Protected  | Deletes a note by ID.                                                    |
+| `POST`   | `/tenants/:slug/upgrade` | Admin Only | Upgrades the admin's tenant to the "Pro" plan (Not included in Frontend) |
 
 ---
 
@@ -137,9 +139,9 @@ Email Role Tenant Plan
 
 The frontend and backend are hosted on Vercel.
 
-Live Frontend: [YOUR_FRONTEND_URL.vercel.app]
+Live Frontend: [https://notes-app-fe.vercel.app/]
 
-Live Backend: [YOUR_BACKEND_URL.vercel.app]
+Live Backend: [https://notes-app-be-sigma.vercel.app/]
 
 ---
 
